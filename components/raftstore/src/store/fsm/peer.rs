@@ -3079,9 +3079,9 @@ where
         let mut resp = RaftCmdResponse::default();
         let term = self.fsm.peer.term();
         bind_term(&mut resp, term);
-        if self.fsm.peer.propose(self.ctx, cb, msg, resp) {
-            self.fsm.has_ready = true;
-        }
+        // if self.fsm.peer.propose(self.ctx, cb, msg, resp) {
+        self.fsm.has_ready = true;
+        // }
 
         if self.fsm.peer.should_wake_up {
             self.reset_raft_tick(GroupState::Ordered);
