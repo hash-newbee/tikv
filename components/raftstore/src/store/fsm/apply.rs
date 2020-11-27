@@ -3471,7 +3471,7 @@ impl<EK: KvEngine> ApplyBatchSystem<EK> {
 pub fn create_apply_batch_system<EK: KvEngine>(
     cfg: &Config,
 ) -> (ApplyRouter<EK>, ApplyBatchSystem<EK>) {
-    let (tx, _) = loose_bounded(usize::MAX);
+    let (tx, _) = loose_bounded(usize::MAX/2);
     let (router, system) =
         batch_system::create_system(&cfg.apply_batch_system, tx, Box::new(ControlFsm));
     (ApplyRouter { router }, ApplyBatchSystem { system })
